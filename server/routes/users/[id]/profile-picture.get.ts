@@ -1,5 +1,5 @@
-import { defineEventHandler } from "h3";
-import { prisma } from "~/server/utils/prisma";
+import { defineEventHandler, getRouterParam, createError } from "h3";
+import { prisma } from "#imports";
 
 export default defineEventHandler(async (event) => {
   const userId = getRouterParam(event, "id");

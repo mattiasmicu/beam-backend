@@ -1,5 +1,5 @@
 import { defineEventHandler, readBody } from "h3";
-import { prisma } from "~/server/utils/prisma";
+import { prisma } from "#imports";
 import { verifyAuth } from "~/server/utils/auth";
 
 export default defineEventHandler(async (event) => {
