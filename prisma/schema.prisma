@@ -135,6 +135,7 @@ model users {
   last_logged_in DateTime? @db.Timestamptz(0)
   permissions    String[]
   profile        Json
+  profile_picture String?   @db.Text
   ratings        Json      @default("[]")
   nickname       String    @db.VarChar(255)
 }
