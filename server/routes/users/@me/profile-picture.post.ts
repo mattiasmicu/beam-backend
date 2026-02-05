@@ -1,10 +1,11 @@
 import { defineEventHandler, readBody } from "h3";
 import { prisma } from "#imports";
-import { verifyAuth } from "#imports";
+import { useAuth } from "~/utils/auth";
 
 export default defineEventHandler(async (event) => {
-  const user = await verifyAuth(event);
-  if (!user) {
+  const session = await useAuth().getCurrentSession();
+  
+  if (!session) {
     throw createError({ statusCode: 401, statusMessage: "Unauthorized" });
   }
 
@@ -17,7 +18,7 @@ export default defineEventHandler(async (event) => {
 
   // Update user profile picture (store as base64)
   await prisma.users.update({
-    where: { id: user.id },
+    where: { id: session.user },
     data: { profile_picture: image },
   });
 
