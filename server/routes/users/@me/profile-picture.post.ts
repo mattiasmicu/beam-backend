@@ -1,6 +1,6 @@
 import { defineEventHandler, readBody } from "h3";
 import { prisma } from "#imports";
-import { verifyAuth } from "~/server/utils/auth";
+import { verifyAuth } from "#imports";
 
 export default defineEventHandler(async (event) => {
   const user = await verifyAuth(event);
